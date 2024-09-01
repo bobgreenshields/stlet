@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/app'
+require_relative '../lib/parser'
+require_relative '../lib/rc_file'
+
+RC_FILE = Pathname.new(ENV['HOME']) + '.stletrc'
+options = Stlet::Parser.new.call(ARGV)
+settings = Stlet::RCFile.new.call(RC_FILE)
+Stlet::App.new(settings: settings, options: options).call
